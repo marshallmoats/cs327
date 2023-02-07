@@ -1,3 +1,0 @@
-Defines a struct State that encapsulates information about what moves have been made, and in what order, as well as what tiles have been visited.
-Defines several functions that are used with a State struct to determines if moves are valid and other such things.
-main() iterates over each tile and calls a function that recursively finds every path starting from that tile, and prints out a path when it detects that every tile has been visited.

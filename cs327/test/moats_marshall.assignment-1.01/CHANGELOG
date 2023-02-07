@@ -1,7 +1,0 @@
-1/27 - Started project, set up map struct
-1/27 - Added Terrain enum and TERRAIN_CHARS
-1/28 - Added print_map function
-1/28 - Added init_map
-1/28 - Changed init_map to use nearest-neighbor terrain generation
-1/28 - Added path generation to init_map
-2/1 - Added Pokemon center and Pokemart to init_map
