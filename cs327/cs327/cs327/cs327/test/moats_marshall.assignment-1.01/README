@@ -1,0 +1,9 @@
+This code defines a Terrain enum and a char array for the characters that represent these terrain types.
+I also used ANSI escape characters to give each terrain types a color.
+A Map struct is generated, which holds a 2D array of Terrain values, and 4 ints representing the positions of the exits on each side of the map.
+print_map simply iterates over the map's terrain array and for each tile, prints its associated char in the correct color.
+init_map places mountains around the edges, and then places 32 seeds in random locations. 12 are short grass, 12 are tall grass, 4 are forest, and 4 are water.
+It then iterates over each tile and sets the terrain type to the terrain of the nearest seed. It then randomly places a few mountains around the map.
+It randomly generates the exit path positions, and generates two paths that cross the map.
+Finally, it generates two positions along the east-west path, ensures that they are valid, and places the pokemon center and the pokemart at those positions.
+main seeds srand with the current time. It then creates a map, initializes it, and prints it.

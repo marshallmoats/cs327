@@ -1,0 +1,8 @@
+cp -r foldername \moats_marshall.assignment-1.00
+
+tar cvfz moats_marshall.assignment-1.00.tar.gz moats_marshall.assignment-1.00/
+
+mkdir test
+cd test
+
+gzip -dc ../moats_marshall.assignment-1.00.tar.gz | tar xvf -
