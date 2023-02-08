@@ -21,7 +21,7 @@ void init_world(struct World *world) {
 
 
     world->maps[world->cur_y][world->cur_x] = malloc(sizeof(*world->maps[world->cur_y][world->cur_x]));
-    init_map(world->maps[world->cur_y][world->cur_x], 0, 0, 0, 0);
+    init_map(world->maps[world->cur_y][world->cur_x], world->cur_x, world->cur_y, 0, 0, 0, 0);
 }
 
 void gates(struct World *world, int x, int y, int res[4]) {
@@ -113,7 +113,7 @@ void exec_command(struct World *world, char *command) {
     if (!world->maps[world->cur_y][world->cur_x]) {
         world->maps[world->cur_y][world->cur_x] = malloc(sizeof(*world->maps[world->cur_y][world->cur_x]));
         gates(world, world->cur_x, world->cur_y, g);
-        init_map(world->maps[world->cur_y][world->cur_x], g[0], g[1], g[2], g[3]);
+        init_map(world->maps[world->cur_y][world->cur_x], world->cur_x, world->cur_y, g[0], g[1], g[2], g[3]);
     }
     print_world(world);
     printf("(x: %d, y: %d)\n", world->cur_x - 200, world->cur_y - 200);

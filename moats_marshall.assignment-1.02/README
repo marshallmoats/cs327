@@ -1,0 +1,6 @@
+This code uses a new World struct that contains a 401x401 array of Maps, and also contains the (x, y) of the current map.
+It also extends the Map struct to store the positions of the 4 gates.
+init_world takes a World pointer and generates the map at (0, 0), and sets cur_x and cur_y to 0.
+The gates function takes x and y and determines if any adjacent maps have been generated, and if so, returns the necessary gate positions so that the current map is generated so that they line up.
+exec_command parses the input and adjusts the world's cur_x and cur_y, calls init_map, and prints the map
+init_map has also been modified to take an x and y, so it can generate pokemon centers and pokemarts more rarely when further from the center.

@@ -69,8 +69,7 @@ void print_map(struct Map* map) {
     }
 }
 
-void init_map(struct World* world, int north_gate, int south_gate, int west_gate, int east_gate) {
-    struct Map* map = world->maps[world->cur_y][world->cur_x];
+void init_map(struct Map* map, int x, int y, int north_gate, int south_gate, int west_gate, int east_gate) {
     for (int x = 0; x < MAP_X; ++x) {
         map->terrain[0][x] = Mountain;
         map->terrain[MAP_Y - 1][x] = Mountain;
@@ -162,9 +161,12 @@ void init_map(struct World* world, int north_gate, int south_gate, int west_gate
     }
 
     // place pokemon center and pokemart
+    int dist = abs(x - 200) + abs(y - 200);
+    int should_gen_pctr = rand() % 50 <= 50 - 45 * dist / 200 ? 1 : 0;
+    int should_gen_pmart = rand() % 50 <= 50 - 45 * dist / 200 ? 1 : 0;
     int pctr_x;
     int pmart_x;
-    do {
+    while (should_gen_pctr) {
         pctr_x = 1 + rand() % (MAP_X - 3);
         if (pctr_x > we_swap - 2 && pctr_x < we_swap + 1)
             continue;
@@ -188,9 +190,9 @@ void init_map(struct World* world, int north_gate, int south_gate, int west_gate
             map->terrain[coords[1][i]][coords[0][i]] = PokemonCenter;
         }
         break;
-    } while (1);
+    }
 
-    do {
+    while (should_gen_pmart) {
         pmart_x = 1 + rand() % (MAP_X - 3);
         if ((pmart_x > we_swap - 2 && pmart_x < we_swap + 1) || (pmart_x > pctr_x - 2 && pmart_x < pctr_x + 2))
             continue;
@@ -214,7 +216,5 @@ void init_map(struct World* world, int north_gate, int south_gate, int west_gate
             map->terrain[coords[1][i]][coords[0][i]] = Pokemart;
         }
         break;
-    } while (1);
-
-    if 
+    }
 }

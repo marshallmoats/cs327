@@ -1,6 +1,6 @@
 all: main
 
-main: main.c
+main: main.c map.h
 	gcc -Wall -Werror -ggdb main.c -o main
 
 clean:

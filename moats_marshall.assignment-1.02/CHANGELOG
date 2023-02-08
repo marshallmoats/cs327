@@ -1,0 +1,6 @@
+2/1 - Added World struct
+2/1 - Added init_world
+2/3 - Added exec_command
+2/3 - Added gates
+2/8 - Modified init_map to take x and y
+2/8 - Adjusted random generation of pokemart and pokemon center
