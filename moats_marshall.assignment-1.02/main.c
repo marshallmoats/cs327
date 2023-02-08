@@ -56,14 +56,14 @@ void print_world(struct World *world) {
 }
 
 
-void exec_command(struct World *world, char command) {
+void exec_command(struct World *world, char *command) {
     int g[4];
     char *valid_commands = "nswef\n";
-    if (strchr(valid_commands, command) == NULL) {
+    if (strchr(valid_commands, command[0]) == NULL) {
         printf("Invalid command. Please try again.\n");
         return;
     }
-    switch (command) {
+    switch (command[0]) {
         case 'n':
             if (world->cur_y == 0) {
                 printf("Can't go in that direction.\n");
@@ -92,6 +92,21 @@ void exec_command(struct World *world, char command) {
             }
             world->cur_x++;
             break;
+        case 'f':
+            char c;
+            int fly_x, fly_y;
+            if (sscanf(command, "%c %d %d", &c, &fly_x, &fly_y) != 3) {
+                printf("Invalid fly command.\n");
+                return;
+            }
+            if (fly_x < -201 || fly_x > 201 || fly_y < -201 || fly_y > 201) {
+                printf("Invalid fly command.\n");
+                return;
+            }
+            printf("%d\n%d\n", fly_x, fly_y);
+            world->cur_x = fly_x + 200;
+            world->cur_y = fly_y + 200;
+            break;
         case '\n':
             return;
     }
@@ -101,7 +116,7 @@ void exec_command(struct World *world, char command) {
         init_map(world->maps[world->cur_y][world->cur_x], g[0], g[1], g[2], g[3]);
     }
     print_world(world);
-    printf("(x: %d, y: %d)\n", world->cur_x, world->cur_y);
+    printf("(x: %d, y: %d)\n", world->cur_x - 200, world->cur_y - 200);
 }
 
 
@@ -118,10 +133,11 @@ int main() {
     init_world(&world);
     print_world(&world);
 
-    char command;
+    char *command = NULL;
+    size_t size;
     while (1) {
-        scanf("%c", &command);
-        if (command == 'q')
+        getline(&command, &size, stdin);
+        if (command[0] == 'q')
             break;
         exec_command(&world, command);
     }

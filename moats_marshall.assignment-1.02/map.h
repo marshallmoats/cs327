@@ -69,7 +69,8 @@ void print_map(struct Map* map) {
     }
 }
 
-void init_map(struct Map* map, int north_gate, int south_gate, int west_gate, int east_gate) {
+void init_map(struct World* world, int north_gate, int south_gate, int west_gate, int east_gate) {
+    struct Map* map = world->maps[world->cur_y][world->cur_x];
     for (int x = 0; x < MAP_X; ++x) {
         map->terrain[0][x] = Mountain;
         map->terrain[MAP_Y - 1][x] = Mountain;
@@ -214,4 +215,6 @@ void init_map(struct Map* map, int north_gate, int south_gate, int west_gate, in
         }
         break;
     } while (1);
+
+    if 
 }
