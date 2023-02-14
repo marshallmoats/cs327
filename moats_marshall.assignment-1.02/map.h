@@ -15,11 +15,12 @@
 #define ANSI_COLOR_CYAN    "\x1b[36m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
-#define NUM_TERRAIN_TYPES 9
+#define NUM_TERRAIN_TYPES 10
 
 enum Terrain {
     None,
     Road,
+    Bridge,
     TallGrass,
     ShortGrass,
     Forest,
@@ -32,6 +33,7 @@ enum Terrain {
 char TERRAIN_CHARS[] = {
     ' ', // None
     '#', // Road
+    '=', // Bridge
     ':', // TallGrass
     '.', // ShortGrass
     '^', // Forest / tree
@@ -44,6 +46,7 @@ char TERRAIN_CHARS[] = {
 char* TERRAIN_COLORS[] = {
     ANSI_COLOR_RESET, // None
     ANSI_COLOR_YELLOW, // Road
+    ANSI_COLOR_YELLOW, // Bridge
     ANSI_COLOR_GREEN, // TallGrass
     ANSI_COLOR_GREEN, // ShortGrass
     ANSI_COLOR_GREEN, // Forest / tree
